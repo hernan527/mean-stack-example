@@ -1,6 +1,6 @@
 import * as express from "express";
 import * as mongodb from "mongodb";
-import { collections } from "./database";
+import { collections } from "../conection/database";
 
 export const employeeRouter = express.Router();
 employeeRouter.use(express.json());

@@ -1,0 +1,23 @@
+<h2 class="text-center m-5">Lista de Planes</h2>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+
+        </tr>
+    </thead>
+
+    <!-- <tbody>
+        <tr *ngFor="let plan of planes$ | async">
+            <td>{{plan.name}}</td>
+
+            <td>
+                <button class="btn btn-primary me-1" [routerLink]="['editar/', plan._id]">Editar</button>
+                <button class="btn btn-danger" (click)="deletePlan(plan._id || '')">Eliminar</button>
+            </td>
+        </tr>
+    </tbody> -->
+</table>
+
+<button class="btn btn-primary mt-3" [routerLink]="['nuevo']">Agrerar Nuevo Plan</button>
