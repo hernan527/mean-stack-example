@@ -27,7 +27,7 @@ export class PlanesService {
   }
 
   getPlan(id: string): Observable<Planes> {
-    return this.httpClient.get<Planes>(`${this.url}/planes/${name}`);
+    return this.httpClient.get<Planes>(`${this.url}/planes/${id}`);
   }
 
   createPlan(planes: Planes): Observable<string> {
@@ -35,10 +35,10 @@ export class PlanesService {
   }
 
   updatePlan(id: string, planes: Planes): Observable<string> {
-    return this.httpClient.put(`${this.url}/planes/${name}`, planes, { responseType: 'text' });
+    return this.httpClient.put(`${this.url}/planes/${id}`, planes, { responseType: 'text' });
   }
 
   deletePlan(id: string): Observable<string> {
-    return this.httpClient.delete(`${this.url}/planes/${name}`, { responseType: 'text' });
+    return this.httpClient.delete(`${this.url}/planes/${id}`, { responseType: 'text' });
   }
 }

@@ -20,7 +20,7 @@ export class AddEmpleadoComponent {
     this.employeeService.createEmployee(employee)
       .subscribe({
         next: () => {
-          this.router.navigate(['/employees']);
+          this.router.navigate(['/dashboard/empleados']);
         },
         error: (error) => {
           alert("Failed to create employee");

@@ -11,7 +11,7 @@ import { PlanesService } from '../../../servicios/planes.service';
 
 })
 export class EditPlanComponent implements OnInit {
-  plan: BehaviorSubject<Planes> = new BehaviorSubject<Planes>({ name: '' });
+  plan: BehaviorSubject<Planes> = new BehaviorSubject({});
 
   constructor(
     private router: Router,
@@ -30,16 +30,18 @@ export class EditPlanComponent implements OnInit {
     });
   }
 
-  // editPlan(plan: Planes) {
-  //   this.planesService.updatePlan(this.plan.value._id || '', plan)
-  //     .subscribe({
-  //       next: () => {
-  //         this.router.navigate(['/planes']);
-  //       },
-  //       error: (error) => {
-  //         alert('Falló actualizar plan');
-  //         console.error(error);
-  //       }
-  //     })
-  // }
+  editPlan(plan: Planes) {
+    this.planesService.updatePlan(this.plan.value._id || '', plan)
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/dashboard/planes']);
+        },
+        error: (error) => {
+          alert('Falló actualizar plan');
+          console.error(error);
+        }
+      })
+  }
 }
+
+

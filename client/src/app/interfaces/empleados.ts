@@ -3,4 +3,5 @@ export interface Empleado {
     position?: string;
     level?: 'junior' | 'mid' | 'senior';
     _id?: string;
+    clinicas?:string;
 }

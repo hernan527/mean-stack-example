@@ -18,7 +18,7 @@ export class AddPlanComponent {
     this.planesService.createPlan(plan)
       .subscribe({
         next: () => {
-          this.router.navigate(['/planes']);
+          this.router.navigate(['/dashboard/planes']);
         },
         error: (error) => {
           alert("Falló crear plan");

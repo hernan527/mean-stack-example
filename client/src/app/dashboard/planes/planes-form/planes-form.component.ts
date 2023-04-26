@@ -11,7 +11,7 @@ import { Planes } from '../../../interfaces/planes';
 })
 export class PlanesFormComponent implements OnInit {
   @Input()
-  initialState: BehaviorSubject<Planes> = new BehaviorSubject<Planes>({ name: '' });
+  initialState: BehaviorSubject<Planes> = new BehaviorSubject({});
     @Output()
     
   formValuesChanged = new EventEmitter<Planes>();
@@ -22,7 +22,7 @@ export class PlanesFormComponent implements OnInit {
   planForm: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder) { }
-
+  // get _id() { return this.planForm.get('id'); }
   get name() { return this.planForm.get('name'); }
   get price() { return this.planForm.get('price'); }
   get precio() { return this.planForm.get('precio'); }
@@ -32,6 +32,10 @@ export class PlanesFormComponent implements OnInit {
   
   get tags() { return this.planForm.get('tags'); }
   get hijosSolos() { return this.planForm.get('hijosSolos'); }
+  get clinicas() { return this.planForm.get('clinicas'); }
+  
+  get folletos() { return this.planForm.get('folletos'); }
+  get images() { return this.planForm.get('images'); }
   
   
 
@@ -40,7 +44,8 @@ export class PlanesFormComponent implements OnInit {
   ngOnInit() {
     this.initialState.subscribe(plan => {
       this.planForm = this.fb.group({
-        name: [ plan.name, [Validators.required] ],
+
+        name: [ plan.name ],
         price: [ plan.price ],
         precio: [ plan.precio ],
         rating: [ plan.rating],
@@ -48,6 +53,9 @@ export class PlanesFormComponent implements OnInit {
         category: [ plan.category ],
         tags: [ plan.tags],
         hijosSolos: [ plan.hijosSolos],
+        folletos: [ plan.folletos ],
+        images: [ plan.images],
+        clinicas: [ plan.clinicas],
       });
     });
 

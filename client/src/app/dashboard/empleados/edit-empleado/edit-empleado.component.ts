@@ -35,7 +35,7 @@ export class EditEmpleadoComponent implements OnInit {
     this.employeeService.updateEmployee(this.employee.value._id || '', employee)
       .subscribe({
         next: () => {
-          this.router.navigate(['/employees']);
+          this.router.navigate(['/dashboard/empleados']);
         },
         error: (error) => {
           alert('Failed to update employee');

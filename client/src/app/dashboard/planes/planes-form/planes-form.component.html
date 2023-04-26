@@ -1,5 +1,8 @@
 <form class="plan-form" autocomplete="off" [formGroup]="planForm" (ngSubmit)="submitForm()">
-
+  <!-- <div class="form-floating mb-3">
+    <input class="form-control" type="text" id="_id" formControlName="_id" placeholder="ID" required>
+    <label for="id">id</label>
+  </div> -->
     <div class="form-floating mb-3">
       <input class="form-control" type="text" id="name" formControlName="name" placeholder="Name" required>
       <label for="name">Nombre</label>
@@ -76,7 +79,7 @@
   <div class="form-check">
   <input class="form-check-input" type="radio" formControlName="category" name="category" id="superior" value="Superior">
   <label class="form-check-label" for="superior">Superior</label>
-</div>
+  </div>
   </div>
 
 
@@ -105,8 +108,22 @@
 
    
 
-   
+  <div class="form-floating mb-3">
+     
+    <input class="form-control" type="text" id="folletos" formControlName="folletos" placeholder="Folletos">
+    <label for="folleto">Folletos</label>
+  </div>
 
+  <div class="form-floating mb-3">
+     
+    <input class="form-control" type="text" id="clinicas" formControlName="clinicas" placeholder="Clinicas">
+    <label for="clinicas">Clinicas</label>
+  </div>
+  <div class="form-floating mb-3">
+     
+    <input class="form-control" type="text" id="images" formControlName="images" placeholder="Imagenes" >
+    <label for="imagenes">Imagenes</label>
+  </div>
     
     
 
