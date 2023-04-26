@@ -13,8 +13,7 @@ export class PlanesFormComponent implements OnInit {
   @Input()
   initialState: BehaviorSubject<Planes> = new BehaviorSubject<Planes>({ name: '' });
     @Output()
-    planes: { tags: any[] } = { tags: [] };
-    tagsString = '';
+    
   formValuesChanged = new EventEmitter<Planes>();
 
   @Output()

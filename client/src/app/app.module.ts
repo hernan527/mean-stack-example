@@ -5,20 +5,12 @@ import { DashboardModule } from './dashboard/dashboard.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EmployeesListComponent } from './employees-list/employees-list.component';
-import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddEmployeeComponent } from './add-employee/add-employee.component';
-import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    EmployeesListComponent,
-    EmployeeFormComponent,
-    AddEmployeeComponent,
-    EditEmployeeComponent    
+    AppComponent        
   ],
   imports: [
     BrowserModule,

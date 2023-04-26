@@ -8,16 +8,16 @@
         </tr>
     </thead>
 
-    <!-- <tbody>
+    <tbody>
         <tr *ngFor="let plan of planes$ | async">
             <td>{{plan.name}}</td>
 
             <td>
-                <button class="btn btn-primary me-1" [routerLink]="['editar/', plan._id]">Editar</button>
-                <button class="btn btn-danger" (click)="deletePlan(plan._id || '')">Eliminar</button>
+                <button class="btn btn-primary me-1" [routerLink]="['editar/', plan.name]">Editar</button>
+                <button class="btn btn-danger" (click)="deletePlan(plan.name || '')">Eliminar</button>
             </td>
         </tr>
-    </tbody> -->
+    </tbody>
 </table>
 
 <button class="btn btn-primary mt-3" [routerLink]="['nuevo']">Agrerar Nuevo Plan</button>

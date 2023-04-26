@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Employee } from '../employee';
-import { EmployeeService } from '../employee.service';
+import { Empleado } from '../../../interfaces/empleados';
+import { EmpleadosService } from '../../../servicios/empleados.service';
 
 @Component({
-  selector: 'app-add-employee',
+  selector: 'app-add-empleado',
   template: `
     <h2 class="text-center m-5">Add a New Employee</h2>
-    <app-employee-form (formSubmitted)="addEmployee($event)"></app-employee-form>
+    <app-empleado-form (formSubmitted)="addEmployee($event)"></app-empleado-form>
   `
 })
-export class AddEmployeeComponent {
+export class AddEmpleadoComponent {
   constructor(
     private router: Router,
-    private employeeService: EmployeeService
+    private employeeService: EmpleadosService
   ) { }
 
-  addEmployee(employee: Employee) {
+  addEmployee(employee: Empleado) {
     this.employeeService.createEmployee(employee)
       .subscribe({
         next: () => {

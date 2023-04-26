@@ -16,7 +16,10 @@ import { AddPlanComponent } from './planes/add-plan/add-plan.component';
 import { PlanesListComponent } from './planes/planes-list/planes-list.component';
 import { PlanesFormComponent } from './planes/planes-form/planes-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { EmpleadosListComponent } from './empleados/empleados-list/empleados-list.component';
+import { AddEmpleadoComponent } from './empleados/add-empleado/add-empleado.component';
+import { EditEmpleadoComponent } from './empleados/edit-empleado/edit-empleado.component';
+import { EmpleadoFormComponent } from './empleados/empleado-form/empleado-form.component';
 
 
 @NgModule({
@@ -26,7 +29,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EditPlanComponent,
     PlanesListComponent,
     PlanesFormComponent,
-    DashboardComponent
+    DashboardComponent,
+    EmpleadosListComponent,
+    AddEmpleadoComponent,
+    EditEmpleadoComponent,
+    EmpleadoFormComponent
   ],
   imports: [
     CommonModule,

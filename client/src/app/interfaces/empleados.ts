@@ -1,4 +1,4 @@
-export interface Employee {
+export interface Empleado {
     name?: string;
     position?: string;
     level?: 'junior' | 'mid' | 'senior';

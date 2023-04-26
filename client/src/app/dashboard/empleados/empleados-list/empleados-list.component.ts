@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Employee } from '../employee';
-import { EmployeeService } from '../employee.service';
+import { Empleado } from '../../../interfaces/empleados';
+import { EmpleadosService } from '../../../servicios/empleados.service';
 
 @Component({
-  selector: 'app-employees-list',
+  selector: 'app-empleados-list',
   template: `
-    <h2 class="text-center m-5">Employees List</h2>
+    <h2 class="text-center m-5">Lista de Empleados</h2>
 
     <table class="table table-striped table-bordered">
         <thead>
@@ -24,20 +24,20 @@ import { EmployeeService } from '../employee.service';
                 <td>{{employee.position}}</td>
                 <td>{{employee.level}}</td>
                 <td>
-                    <button class="btn btn-primary me-1" [routerLink]="['edit/', employee._id]">Edit</button>
+                    <button class="btn btn-primary me-1" [routerLink]="['editar/', employee._id]">Edit</button>
                     <button class="btn btn-danger" (click)="deleteEmployee(employee._id || '')">Delete</button>
                 </td>
             </tr>
         </tbody>
     </table>
 
-    <button class="btn btn-primary mt-3" [routerLink]="['new']">Add a New Employee</button>
+    <button class="btn btn-primary mt-3" [routerLink]="['nuevo']">Add a New Employee</button>
   `
 })
-export class EmployeesListComponent implements OnInit {
-  employees$: Observable<Employee[]> = new Observable();
+export class EmpleadosListComponent implements OnInit {
+  employees$: Observable<Empleado[]> = new Observable();
 
-  constructor(private employeesService: EmployeeService) { }
+  constructor(private employeesService: EmpleadosService) { }
 
   ngOnInit(): void {
     this.fetchEmployees();

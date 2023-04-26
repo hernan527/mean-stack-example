@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { Employee } from '../employee';
-import { EmployeeService } from '../employee.service';
+import { Empleado } from '../../../interfaces/empleados';
+import { EmpleadosService } from '../../../servicios/empleados.service';
 
 @Component({
-  selector: 'app-edit-employee.component.ts',
+  selector: 'app-edit-empleado.component.ts',
   template: `
     <h2 class="text-center m-5">Edit an Employee</h2>
-    <app-employee-form [initialState]="employee" (formSubmitted)="editEmployee($event)"></app-employee-form>
+    <app-empleado-form [initialState]="employee" (formSubmitted)="editEmployee($event)"></app-empleado-form>
   `
 })
-export class EditEmployeeComponent implements OnInit {
-  employee: BehaviorSubject<Employee> = new BehaviorSubject({});
+export class EditEmpleadoComponent implements OnInit {
+  employee: BehaviorSubject<Empleado> = new BehaviorSubject({});
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private employeeService: EmployeeService,
+    private employeeService: EmpleadosService,
   ) { }
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class EditEmployeeComponent implements OnInit {
     });
   }
 
-  editEmployee(employee: Employee) {
+  editEmployee(employee: Empleado) {
     this.employeeService.updateEmployee(this.employee.value._id || '', employee)
       .subscribe({
         next: () => {
