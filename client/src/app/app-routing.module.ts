@@ -8,9 +8,8 @@ const baseLayoutRouting: Routes = [
   {path: 'dashboard',loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)}]
 
 const routes: Routes = [
-  {path: '',component: BaseLayoutComponent,children: baseLayoutRouting},
-  
-
+  {path: 'home',component: BaseLayoutComponent,children: baseLayoutRouting},
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({

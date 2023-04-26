@@ -32,6 +32,11 @@ import { EmpleadosService } from '../../../servicios/empleados.service';
     </table>
 
     <button class="btn btn-primary mt-3" [routerLink]="['nuevo']">Add a New Employee</button>
+  
+    <br>
+<br>
+<br>
+<button class="btn btn-primary mt-3" [routerLink]="['']">Volver</button>
   `
 })
 export class EmpleadosListComponent implements OnInit {
