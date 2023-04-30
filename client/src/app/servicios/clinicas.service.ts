@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, tap } from 'rxjs';
 import { Clinicas } from '../interfaces/clinicas';
+import { SERVER_URL } from '../constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClinicasService {
-  private url = '${SERVER_URL}';
+  private url = SERVER_URL;
   private clinicas$: Subject<Clinicas[]> = new Subject();
 
   constructor(private httpClient: HttpClient) { }

@@ -1,11 +1,15 @@
 import * as dotenv from "dotenv";
 import cors from "cors";
 import express from "express";
+import {Request, Response} from "express";
+
 import { connectToDatabase } from "./conection/database";
-import { employeeRouter } from "./routes/employee.routes";
+import { employeesRouter } from "./routes/employees.routes";
 import { empresasRouter } from "./routes/empresas.routes";
 import { planesRouter } from "./routes/planes.routes";
-
+import { clinicasRouter } from "./routes/clinicas.routes";
+import cotizacionRoutes from './routes/cotizacion.routes';
+import { collections } from './conection/database';
 
 
 // Load environment variables from the .env file, where the ATLAS_URI is configured
@@ -21,11 +25,16 @@ if (!ATLAS_URI) {
 connectToDatabase(ATLAS_URI)
     .then(() => {
         const app = express();
+        app.get('/', (req, res) => {
+            res.send('Hello World!');
+          });
         app.use(cors());
-        app.use("/employees", employeeRouter);
+        app.use("/employees",employeesRouter);
+        
         app.use("/empresas", empresasRouter);
         app.use("/planes", planesRouter);
-
+        app.use("/clinicas", clinicasRouter);
+        app.use('/cotizacion', cotizacionRoutes);
         // start the Express server
         app.listen(5200, () => {
             console.log(`Server running at http://localhost:5200...`);
@@ -33,3 +42,13 @@ connectToDatabase(ATLAS_URI)
 
     })
     .catch(error => console.error(error));
+
+    export const  getEmployees2 = async (req: Request, res: Response) => {
+        try {
+          const  employees = await collections.employees.find({}).toArray();
+          res.status(200).send(employees);
+        } catch (error) {
+          res.status(500).send(error.message);
+        }
+      };
+      

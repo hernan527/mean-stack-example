@@ -1,0 +1,137 @@
+<form [formGroup]="formCotizar" (ngSubmit)="save($event)" >
+  
+  
+  <div class="form-group">
+
+    <label for="">Grupo Familiar</label>
+    <select class="form-control" formControlName="grupo"  >
+      <option value="">Selecciona una opción</option>
+      <option value="1">Titular</option>
+      <option value="2">Titular con hijos</option>
+      <option value="3">Pareja</option>
+      <option value="4">Pareja con hijos</option>
+    </select>
+  </div>
+  
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-6 col-lg-3">
+        <button class="btn btn-outline-secondary btn-block mb-3" (click)="setGrupo(1)">
+          <i class="bi bi-person-fill"></i>
+          <span>1 persona</span>
+        </button>
+      </div>
+      <div class="col-6 col-lg-3">
+        <button class="btn btn-outline-secondary btn-block mb-3" (click)="setGrupo(2)">
+          <i class="bi bi-people-fill"></i>
+          <span>2 personas</span>
+        </button>
+      </div>
+      <div class="col-6 col-lg-3">
+        <button class="btn btn-outline-secondary btn-block mb-3" (click)="setGrupo(3)">
+          <i class="bi bi-people-fill"></i>
+          <i class="bi bi-person-fill"></i>
+          <span>3 personas</span>
+        </button>
+      </div>
+      <div class="col-6 col-lg-3">
+        <button class="btn btn-outline-secondary btn-block mb-3" (click)="setGrupo(4)">
+          <i class="bi bi-people-fill"></i>
+          <i class="bi bi-person-fill"></i>
+          <i class="bi bi-person-fill"></i>
+          <span>4 personas</span>
+        </button>
+      </div>
+    </div> -->
+
+  <div class="form-group">
+    <label for="">Elegir Prepaga</label>
+    <select class="form-control" formControlName="empresa_prepaga">
+      <option selected value=0>Todas</option>
+      <option value=1>SanCor Salud</option>
+      <option value=2>Galeno</option>
+      <option value=3>Premedic</option>
+      <option value=4>Omint</option>
+      <option value=5>Omint</option>
+      <option value=6>Avalian</option>
+      <option value=7>Prevencion Salud</option>
+      <option value=8>Ospoce Integral</option>
+      <option value=9>Medife</option>
+      <option value=10>Swiss Medical</option>
+    </select>
+  </div>
+
+  <div class="col-4" *ngIf="grupoField>=1">
+
+    <label for="">Edad del Titular</label>
+
+      <input class="form-control" type="number" formControlName="edad_1" placeholder="Edad">
+
+  </div>
+
+
+  <div class="col-4" *ngIf="grupoField >=3">
+    <label for="">Edad del Conyuge</label>
+    <input class="form-control" type="number" formControlName="edad_2" placeholder="Edad">
+  </div>
+
+  <div class="col-4" *ngIf="grupoField==2 ||grupoField==4 ">
+    <label for="">Hijos</label>
+    <input class="form-control"type="number" formControlName="numkids" placeholder="Cuantos hijos">
+
+  </div>
+  <div class="form-group" *ngIf="grupoField==1 && age1Field>=18 || grupoField==2 && age1Field>=18 && hijosField>=1 || grupoField==3 && age1Field>=18 && age2Field>=18 || grupoField==4 && age1Field>=18 && age2Field>=18 && hijosField>=1 " >
+    <label for="">Tipo de asociado {{tipoField}}</label>
+    <select class="form-control" formControlName="tipo"  >
+      <option value="">Selecciona una opción</option>
+      <option value="P">Particular</option>
+      <option value="M">Monotributo</option>
+      <option value="D">Relacion de dependencia</option>
+      <option value="I">Responsable Inscripto</option>
+    </select>
+  </div>
+  
+    <div class="form-group" *ngIf="tipoField=='D'">
+
+    <div class="form-check"  >
+
+      <input class="form-check-input" type="radio" formControlName="aporteOS"
+        value="Sueldo Bruto">
+      <label class="form-check-label"> Sueldo Bruto </label>
+
+    </div>
+
+    <div class="form-check">
+
+      <input class="form-check-input" type="radio" formControlName="aporteOS"
+        value="Aporte Obra Social">
+      <label class="form-check-label"> Aporte Obra Social</label>
+
+    </div>
+
+    <div class="input-group mb-3" >
+
+      <span class="input-group-text" id="result"></span>
+      <span class="input-group-text">$</span>
+      <input type="text" class="form-control" id="sueldo" formControlName="sueldo">
+
+    </div>
+  </div>
+    <!------------------------------monotributo AD-DIV start ----------------------->
+
+    <div class="form-check form-check-inline" *ngIf="tipoField=='D'">
+
+      <br>
+
+      <label class="form-check-label" for="monoadic">check si adem&aacute;s hay Aportes a Monotributo
+        ?</label>
+
+      <input class="form-check-input" type="checkbox" formControlName="monoadic" >
+
+      <br>
+
+    </div>
+
+  <button [disabled]="formCotizar.invalid" type="submit">Cotizar</button>
+      
+  <button type="submit" >Cotizar</button>

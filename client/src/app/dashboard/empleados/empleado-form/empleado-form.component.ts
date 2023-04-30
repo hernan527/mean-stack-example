@@ -11,10 +11,7 @@ import { Empleado } from '../../../interfaces/empleados';
         <input class="form-control" type="text" id="name" formControlName="name" placeholder="Name" required>
         <label for="name">Name</label>
       </div>
-      <div class="form-floating mb-3">
-        <input class="form-control" type="text" id="clinicas" formControlName="clinicas" placeholder="Clinicas" required>
-        <label for="clinicas">Clinicas</label>
-      </div>
+
 
       <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
         <div *ngIf="name.errors?.['required']">
@@ -93,7 +90,6 @@ export class EmpleadoFormComponent implements OnInit {
         name: [ employee.name, [Validators.required] ],
         position: [ employee.position, [ Validators.required, Validators.minLength(5) ] ],
         level: [ employee.level, [Validators.required] ],
-        clinicas: [ employee.clinicas]
       });
     });
 

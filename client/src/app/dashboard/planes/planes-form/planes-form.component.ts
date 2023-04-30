@@ -12,9 +12,7 @@ import { Planes } from '../../../interfaces/planes';
 export class PlanesFormComponent implements OnInit {
   @Input()
   initialState: BehaviorSubject<Planes> = new BehaviorSubject({});
-    @Output()
-    
-  formValuesChanged = new EventEmitter<Planes>();
+    @Output()formValuesChanged = new EventEmitter<Planes>();
 
   @Output()
   formSubmitted = new EventEmitter<Planes>();
@@ -22,7 +20,6 @@ export class PlanesFormComponent implements OnInit {
   planForm: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder) { }
-  // get _id() { return this.planForm.get('id'); }
   get name() { return this.planForm.get('name'); }
   get price() { return this.planForm.get('price'); }
   get precio() { return this.planForm.get('precio'); }

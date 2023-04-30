@@ -1,0 +1,17 @@
+button.btn i.bi {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+  }
+  
+  button.btn span {
+    display: inline-block;
+    margin-top: 0.2rem;
+  }
+  
+  button.btn.active,
+  button.btn:active {
+    background-color: #6c757d;
+    color: #fff;
+    border-color: #6c757d;
+  }
+  

@@ -13,10 +13,10 @@ export interface Planes {
     hijosSolos?: string;
     name?: string;
     images?:string[];
-    folletos:string[];
-    beneficios:string[];
-    clinicas:string[];
-    _id?: string;
+    folletos?:string[];
+    beneficios?:string[];
+    clinicas?:string[];
+    _id?: mongodb.ObjectId;
   
 }
 

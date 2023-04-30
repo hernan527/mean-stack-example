@@ -4,7 +4,7 @@
   "description": "Sample CRUD application built with the MEAN stack.",
   "main": "index.js",
   "scripts": {
-    "start": "npm run prepare && concurrently \"npm run start:server\" \"npm run start:client\" \"npm run nodemon\"",
+    "start": "npm run prepare && concurrently \"npm run start:server\" \"npm run start:client\" ",
     "start:server": "cd server && npm start",
     "start:client": "cd client && npm start",
     "prepare": "concurrently \"npm run prepare:server\" \"npm run prepare:client\"",
@@ -35,5 +35,8 @@
   },
   "devDependencies": {
     "concurrently": "^7.1.0"
+  },
+  "dependencies": {
+    "mongoose": "^7.1.0"
   }
 }

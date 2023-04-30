@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, tap } from 'rxjs';
 import { Empresa } from '../interfaces/empresas';
+import { SERVER_URL } from '../constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpresasService {
-  private url = '${SERVER_URL}';
+  private url = SERVER_URL;
   private empresas$: Subject<Empresa[]> = new Subject();
 
   constructor(private httpClient: HttpClient) { }
@@ -25,11 +26,11 @@ export class EmpresasService {
   }
 
   getEmpresa(id: string): Observable<Empresa> {
-    return this.httpClient.get<Empresa>(`${this.url}/empresa/${id}`);
+    return this.httpClient.get<Empresa>(`${this.url}/empresas/${id}`);
   }
 
   createEmpresa(empresa: Empresa): Observable<string> {
-    return this.httpClient.post(`${this.url}/empresa`, empresa, { responseType: 'text' });
+    return this.httpClient.post(`${this.url}/empresas`, empresa, { responseType: 'text' });
   }
 
   updateEmpresa(id: string, empresa: Empresa): Observable<string> {
@@ -37,6 +38,6 @@ export class EmpresasService {
   }
 
   deleteEmpresa(id: string): Observable<string> {
-    return this.httpClient.delete(`${this.url}/empresa/${id}`, { responseType: 'text' });
+    return this.httpClient.delete(`${this.url}/empresas/${id}`, { responseType: 'text' });
   }
 }

@@ -1,5 +1,5 @@
 import * as mongodb from "mongodb";
-import { Employee } from "../interfaces/employee";
+import { Employee } from "../models/employee.model";
 import { Empresa } from "../interfaces/empresas";
 import { Planes } from "../interfaces/planes";
 import { Clinicas } from "../interfaces/clinicas";
@@ -28,25 +28,25 @@ export const collections: {
 export async function connectToDatabase(uri: string) {
     const client = new mongodb.MongoClient(uri);
     await client.connect();
+    
 
     const db = client.db("api-crud");
     const db1 = client.db("planes");
     const db2 = client.db("precios");
 
 
-    await applySchemaValidation(db);
-    await applySchemasValidation(db1);
+    // await applySchemaValidation(db);
+    // await applySchemasValidation(db1);
 
     const employeesCollection = db.collection<Employee>("employees");
     collections.employees = employeesCollection;
     
-    await applySchemaValidation(db1);
     
     const empresasCollection = db1.collection<Empresa>("empresas");
     collections.empresas = empresasCollection;
 
-    const todoslosplanesCollection = db1.collection<Planes>("todoslosplanes");
-    collections.todoslosplanes = todoslosplanesCollection;
+    const planesCollection = db1.collection<Planes>("todoslosplanes");
+    collections.todoslosplanes = planesCollection;
 
     const clinicasCollection = db1.collection<Clinicas>("clinicas");
     collections.clinicas = clinicasCollection;
@@ -86,121 +86,4 @@ export async function connectToDatabase(uri: string) {
 
 
 }
-
-// Update our existing collection with JSON schema validation so we know our documents will always match the shape of our Employee model, even if added elsewhere.
-// For more information about schema validation, see this blog series: https://www.mongodb.com/blog/post/json-schema-validation--locking-down-your-model-the-smart-way
-async function applySchemaValidation(db: mongodb.Db) {
-    const jsonSchema = {
-        $jsonSchema: {
-            bsonType: "object",
-            required: ["name", "position", "level"],
-            additionalProperties: false,
-            properties: {
-                _id: {},
-                name: {
-                    bsonType: "string",
-                    description: "'name' is required and is a string",
-                },
-                position: {
-                    bsonType: "string",
-                    description: "'position' is required and is a string",
-                    minLength: 5
-                },
-                level: {
-                    bsonType: "string",
-                    description: "'level' is required and is one of 'junior', 'mid', or 'senior'",
-                    enum: ["junior", "mid", "senior"],
-                },
-            },
-        },
-    };
-
-    
-    // Try applying the modification to the collection, if the collection doesn't exist, create it 
-   await db.command({
-        collMod: "employees",
-        validator: jsonSchema
-    }).catch(async (error: mongodb.MongoServerError) => {
-        if (error.codeName === "NamespaceNotFound") {
-            await db.createCollection("employees", {validator: jsonSchema});
-        }
-    });
-    
-}
-
-//--------------------------------------------------------------------------------------
-async function applySchemasValidation(db1: mongodb.Db) {
-
-
-const empresasSchema = {
-    $jsonSchema: {
-        bsonType: "object",
-        required: ["name", "address"],
-        additionalProperties: false,
-        properties: {
-            _id: {},
-            name: {
-                bsonType: "string",
-                description: "'name' is required and is a string",
-            },
-            address: {
-                bsonType: "string",
-                description: "'address' is required and is a string",
-                minLength: 5
-            },
-        },
-    },
-};
-
-const planesSchema = {
-    $jsonSchema: {
-        bsonType: "object",
-        required: ["name", "price"],
-        additionalProperties: false,
-        properties: {
-            _id: {},
-            name: {
-                bsonType: "string",
-                description: "'name' is required and is a string",
-            },
-            price: {
-                bsonType: "number",
-                description: "'price' is required and is a number",
-                minimum: 0
-            },
-        },
-    },
-};
-
-await db1.command({
-    collMod: "empresas",
-    validator: empresasSchema
-}).catch(async (error: mongodb.MongoServerError) => {
-    if (error.codeName === "NamespaceNotFound") {
-        await db1.createCollection("empresas", {validator: empresasSchema});
-    }
-});
-
-await db1.command({
-    collMod: "todoslosplanes",
-    validator: planesSchema
-}).catch(async (error: mongodb.MongoServerError) => {
-    if (error.codeName === "NamespaceNotFound") {
-        await db1.createCollection("planes", {validator: planesSchema});
-    }
-});
-  
-}
-    
-
-
-
-
-    
-
-   
-
-    
-
-    
 
